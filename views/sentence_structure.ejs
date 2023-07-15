@@ -1,0 +1,115 @@
+<%- include('partials/header'); %>
+
+</head>
+<body>
+
+    <!---------------------------- add unit -----------------------------------------> 
+    <div class="create min-vh-100 w-100 position-fixed top-0 d-flex justify-content-center align-items-center fadeIn d-none" id="create_unit">
+        <div class="new-content rounded py-4 px-3 shadow-sm">
+            <h5 class="text-center mb-3">Add Unit</h5>
+            <form action="">
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="unit_title" class="form-label fw-medium mb-1"><small>Unit Title</small></label>
+                    <input type="text" class="form-control" placeholder="Add Unit Title" required id="unit_title">
+                </div>
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="title" class="form-label fw-medium mb-1"><small>Title</small></label>
+                    <input type="text" class="form-control" placeholder="Add Title" required id="title">
+                </div>
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="upload_audio" class="form-label fw-medium mb-1"><small>Upload Audio</small></label>
+                    <input type="file" class="form-control" required id="upload_audio" accept="audio/*">
+                </div>
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="description" class="form-label fw-medium mb-1"><small>Description</small></label>
+                    <textarea name="" id="description" rows="3" placeholder="Add description" class="form-control"></textarea>
+                </div>
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="upload_pdf" class="form-label fw-medium mb-1"><small>Upload PDF File</small></label>
+                    <input type="file" class="form-control" required id="upload_pdf" accept="application/pdf">
+                </div>
+                <div class="d-flex justify-content-end align-items-center">
+                    <div class="btn btn-sm btn-danger me-2" id="cancel_btn">Cancel</div>
+                    <input type="submit" class="btn btn-sm btn-success" name="Create" value="Create">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content min-vh-100">
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="/course">Course</a></li>
+                      <li class="breadcrumb-item"><a href="/course_detail">Course Details</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Sentence Structure</li>
+                    </ol>
+                </nav>
+                <div class="btn btn-sm btn-warning" id="add_unit"><small><i class="bi bi-plus me-2"></i>Add Unit</small></div>
+            </div>
+            <div class="table-container mt-3 py-3 px-2 bg-white shadow-sm">
+                <table id="example" class="display bg-white" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Units</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Unit 1</td>
+                            <td>
+                                <a href="/sentence_structure_unit" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Unit 2</td>
+                            <td>
+                                <a href="/sentence_structure_unit" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Unit 3</td>
+                            <td>
+                                <a href="/sentence_structure_unit" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <%- include('partials/footer'); %>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/all.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+        let addUnitBtn = document.querySelector('#add_unit'),
+            createUnit = document.querySelector('#create_unit'),
+            cancelBtn = document.querySelector('#cancel_btn');
+
+        addUnitBtn.addEventListener('click', () => {
+            createUnit.classList.remove('d-none');
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            createUnit.classList.add('d-none');
+        })
+
+    </script>
+</body>
+</html>

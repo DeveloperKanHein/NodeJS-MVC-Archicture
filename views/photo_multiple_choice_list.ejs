@@ -1,0 +1,212 @@
+<%- include('partials/header'); %>
+
+</head>
+<body>
+    <%- include('partials/loading'); %>
+    <%- include('partials/delete_alert_box'); %>
+    <!---------------------------- Create -----------------------------------------> 
+    <div class="create min-vh-100 w-100 position-fixed top-0 d-flex justify-content-center align-items-center fadeIn d-none" id="create_question">
+        <div class="new-content rounded py-4 px-3 shadow-sm">
+            <h5 class="text-center mb-3">Add Photo Multiple Choice</h5>
+            <form action="/admin/photo-multiple-choice" method="post" enctype="multipart/form-data" onsubmit="showLoading();">
+                <!-- <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="question" class="form-label mb-1 fw-medium"><small>Question</small></label>
+                    <input type="text" name="question" class="form-control" id="question" required>
+                </div> -->
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="correctAnswer" class="form-label mb-1 fw-medium"><small>Correct Answer</small></label>
+                    <input type="text" name="correctAnswer" class="form-control" id="correctAnswer" required>
+                </div>
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="upload" class="form-label mb-1 fw-medium"><small>Upload Photo</small></label>
+                    <input type="file" name="photo" class="form-control" id="upload" accept="image/*" required>
+                </div>
+                <div class="input-group-sm mb-3">
+                    <label for="" class="form-label mb-1 fw-medium"><small>Select Answer</small></label>
+                    <div class="row align-items-center">
+                        <div class="col-10">
+                            <input type="text" name="answerText1" class="form-control" placeholder="option 1" required>
+                        </div>
+                        <div class="col-10 mt-1">
+                            <input type="text" name="prounced1" class="form-control" placeholder="pronunciation" required>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" name="isAnswer" value="1" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-2">
+                        <div class="col-10">
+                            <input type="text" name="answerText2" class="form-control" placeholder="option 2" required>
+                        </div>
+                        <div class="col-10 mt-1">
+                            <input type="text" name="prounced2" class="form-control" placeholder="pronunciation" required>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" name="isAnswer" value="2" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-2">
+                        <div class="col-10">
+                            <input type="text" name="answerText3" class="form-control" placeholder="option 3" required>
+                        </div>
+                        <div class="col-10 mt-1">
+                            <input type="text" name="prounced3" class="form-control" placeholder="pronunciation" required>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" name="isAnswer" value="3" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-2">
+                        <div class="col-10">
+                            <input type="text" name="answerText4" class="form-control" placeholder="option 4" required>
+                        </div>
+                        <div class="col-10 mt-1">
+                            <input type="text" name="prounced4" class="form-control" placeholder="pronunciation" required>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" name="isAnswer" value="4" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="" class="form-label mb-1 fw-medium"><small>Correct Answers</small></label>
+                    <div class="row align-items-center shadow-sm">
+                        <div class="col-10">
+                            <input type="text" name="answerText1" class="form-control" placeholder="option 1" required>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check">
+                                <input type="radio" name="isAnswer" value="1" class="form-check-input" required name="q1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-2 shadow-sm">
+                        <div class="col-10">
+                            <input type="text" name="answerText2" class="form-control" placeholder="option 2" required>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check">
+                                <input type="radio" name="isAnswer" value="2" class="form-check-input" required name="q1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-2 shadow-sm">
+                        <div class="col-10">
+                            <input type="text" name="answerText3" class="form-control" placeholder="option 3" required>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check">
+                                <input type="radio" name="isAnswer" value="3" class="form-check-input" required name="q1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-2 shadow-sm">
+                        <div class="col-10">
+                            <input type="text" name="answerText4" class="form-control" placeholder="option 4" required>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check">
+                                <input type="radio" name="isAnswer" value="4" class="form-check-input" required name="q1">
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <input type="hidden" name="unitId" value="<%= unit._id %>">
+                <div class="d-flex justify-content-end align-items-center">
+                    <div class="btn btn-sm btn-danger me-2" id="cancel_btn">Cancel</div>
+                    <input type="submit" class="btn btn-sm btn-success" name="Create" value="Create">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-----------------------Main Content --------------->
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content min-vh-100">
+             <%- include('partials/check_message'); %>
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin/course">Course</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/units/<%= unit.courseId %>">Units</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/unit-detail/<%= unit._id %>"><%= unit.title %></a></li>
+                    <li class="breadcrumb-item"><a href="/admin/quiz/<%= unit._id %>">Quiz</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Photo Multiple Choice</li>
+                    </ol>
+                </nav>
+
+                <div class="btn btn-sm btn-warning" id="add_question"><small><i class="bi bi-plus me-2"></i>Add Question</small></div>
+                </div>
+            <div class="table-container mt-3 py-3 px-2 bg-white shadow-sm">
+                <table id="example" class="display bg-white" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Photo Multiple Choice</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%  for(var i = 0; i < unit.quiz.multipleChoiceWithPhoto.length; i++){ %>
+                            <tr>
+                                <td><%= "Multiple Choice " + (i + 1) %></td>
+                                <td>
+                                    <a href="/admin/photo-multiple-choice-detail/<%= unit._id %>/<%= i %>" class="text-info text-decoration-underline mx-2">more Info</a>
+                                    <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDeleteData('/admin/delete-photo-multiple-choice/<%= unit._id %>/<%= i %>')">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <% } %>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <%- include('partials/footer'); %>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="/js/all.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+        let addQues = document.querySelector('#add_question'),
+            editBtn = document.querySelector('#edit_btn'),
+            craeteQues = document.querySelector('#create_question'),
+            cancelBtn = document.querySelector('#cancel_btn');
+
+        addQues.addEventListener('click', () => {
+            craeteQues.classList.remove('d-none');
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            craeteQues.classList.add('d-none');
+        });
+
+        function setDeleteData(link){
+            let deleteBtn = document.querySelector('#deleteButtonID');
+            deleteBtn.href = link;
+        }
+
+    </script>
+</body>
+</html>

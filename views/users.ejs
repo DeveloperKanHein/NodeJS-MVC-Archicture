@@ -1,0 +1,61 @@
+<%- include('partials/header'); %>
+
+</head>
+<body>
+    
+    <%- include('partials/delete_alert_box'); %>
+
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content user-content min-vh-100">
+            <h5 class="">Users</h5>
+            <div class="table-container mt-3 py-3 px-2 bg-white shadow-sm">
+                <table id="example" class="display bg-white" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email/Phone</th>
+                            <th>Created At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach((user) => { %>
+                            <tr>
+                                <td><%= user.name %></td>
+                                <td><%= user.email %></td>
+                                <td><%= user.createdAt %></td>
+                                <!-- <td>
+                                    <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDeleteData('')">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </a>
+                                </td> -->
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <%- include('partials/footer'); %>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+    <script src="../js/all.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+        function setDeleteData(link){
+            let deleteBtn = document.querySelector('#deleteButtonID');
+            deleteBtn.href = link;
+        }
+    </script>
+</body>
+</html>

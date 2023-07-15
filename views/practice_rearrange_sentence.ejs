@@ -1,0 +1,115 @@
+<%- include('partials/header'); %>
+
+</head>
+<body>
+
+    <!---------------------------- add question -----------------------------------------> 
+    <div class="create min-vh-100 w-100 position-fixed top-0 d-flex justify-content-center align-items-center fadeIn d-none" id="create_question">
+        <div class="new-content rounded py-4 px-3 shadow-sm">
+            <h5 class="text-center mb-3">Add Question</h5>
+            <form action="">
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="no" class="form-label mb-1 fw-medium"><small>Question No.</small></label>
+                    <input type="text" class="form-control" id="no" required>
+                </div>
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="upload" class="form-label mb-1 fw-medium"><small>Upload Audio</small></label>
+                    <input type="file" class="form-control" id="upload" accept="audiio/*" required>
+                </div>
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="jap_sentence" class="form-label mb-1 fw-medium"><small>Add Audio Sentence</small></label>
+                    <input type="text" class="form-control" id="jap_sentence" required>
+                </div>
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="eng_sentence" class="form-label mb-1 fw-medium"><small>Add Answer Sentence</small></label>
+                    <input type="text" class="form-control" id="eng_sentence" required>
+                </div>
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="mixing_sentence" class="form-label mb-1 fw-medium"><small>Add Mixing Sentence</small></label>
+                    <input type="text" class="form-control" id="mixing_sentence" required>
+                </div>
+                <div class="d-flex justify-content-end align-items-center mt-2">
+                    <div class="btn btn-sm btn-danger me-2" id="cancel_btn">Cancel</div>
+                    <input type="submit" class="btn btn-sm btn-success" name="Create" value="Create">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content min-vh-100">
+
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/course">Course</a></li>
+                        <li class="breadcrumb-item"><a href="/course_detail">Course Details</a></li>
+                        <li class="breadcrumb-item"><a href="/practice">Practice</a></li>
+                        <li class="breadcrumb-item"><a href="/practice_title">Practice Title</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Rearrange Sentence</li>
+                      </ol>
+                </nav>
+                <div class="btn btn-sm btn-warning" id="add_question"><small><i class="bi bi-plus me-2"></i>Add Question</small></div>
+            </div>
+
+            <div class="question-box mt-3">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 hover-effect">
+                        <div class="card shadow-sm">
+                            <div class="text-end"><div class="btn" id="edit_btn"><i class="bi bi-pencil-square"></i></div></div>
+                            <div class="card-body">
+                                <div class="text-primary fw-medium"><span class="">01.</span> Listen to the audio clip below and complete the word.
+                                </div>
+                                <div class="w-100 mt-2">
+                                    <audio controls class="w-100">
+                                        <source src="" type="audio/ogg">
+                                        <source src="./photo/file_example_MP3_1MG.mp3" type="audio/mpeg">
+                                      Your browser does not support the audio element.
+                                    </audio>
+                                </div>
+                                <div class="mt-2">私は寿司を食べます</div>
+                                <div class="mt-2">I eat sushi</div>
+                                <div class="mt-2">
+                                    <div class="fw-medium">Mixing Sentence</div>
+                                    <div class="">Words to mixing in answer.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+
+        <%- include('partials/footer'); %>
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/all.js"></script>
+    <script>
+
+        let addQues = document.querySelector('#add_question'),
+            editBtn = document.querySelector('#edit_btn'),
+            craeteQues = document.querySelector('#create_question'),
+            cancelBtn = document.querySelector('#cancel_btn');
+
+        addQues.addEventListener('click', () => {
+            craeteQues.classList.remove('d-none');
+        });
+
+        editBtn.addEventListener('click', () => {
+            craeteQues.classList.remove('d-none');
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            craeteQues.classList.add('d-none');
+        })
+
+    </script>
+</body>
+</html>

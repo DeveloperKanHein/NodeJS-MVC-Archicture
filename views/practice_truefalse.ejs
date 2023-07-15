@@ -1,0 +1,112 @@
+<%- include('partials/header'); %>
+
+</head>
+<body>
+
+    <!---------------------------- add question -----------------------------------------> 
+    <div class="create min-vh-100 w-100 position-fixed top-0 d-flex justify-content-center align-items-center fadeIn d-none" id="create_question">
+        <div class="new-content rounded py-4 px-3 shadow-sm">
+            <h5 class="text-center mb-3">Add Question</h5>
+            <form action="">
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="no" class="form-label mb-1 fw-medium"><small>Question No.</small></label>
+                    <input type="text" class="form-control" id="no" required>
+                </div>
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="description" class="form-label mb-1 fw-medium"><small>Question Description</small></label>
+                    <textarea name="" id=""rows="3" class="form-control"></textarea>
+                </div>
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="upload" class="form-label mb-1 fw-medium"><small>Upload Image or Video or Audio</small></label>
+                    <input type="file" class="form-control" id="upload" required>
+                </div>
+                <div class="input-group-sm mb-3">
+                    <label for="upload" class="form-label mb-1 fw-medium"><small>Select Correct Answer</small></label>
+                    <div class="d-flex align-items-center">
+                        <span class="me-2 border w-100 text-center py-1 bg-white rounded shadow-sm">True</span>
+                        <div class="form-check">
+                            <input class="form-check-input" required type="radio" name="flexRadioDefault" id="" />
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mt-2">
+                        <span class="me-2 border w-100 text-center py-1 bg-white rounded shadow-sm">False</span>
+                        <div class="form-check">
+                            <input class="form-check-input" required type="radio" name="flexRadioDefault" id="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end align-items-center">
+                    <div class="btn btn-sm btn-danger me-2" id="cancel_btn">Cancel</div>
+                    <input type="submit" class="btn btn-sm btn-success" name="Create" value="Create">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content min-vh-100">
+
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/course">Course</a></li>
+                        <li class="breadcrumb-item"><a href="/course_detail">Course Details</a></li>
+                        <li class="breadcrumb-item"><a href="/practice">Practice</a></li>
+                        <li class="breadcrumb-item"><a href="/practice_title">Practice Title</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">True|False Question List</li>
+                      </ol>
+                </nav>
+                <div class="btn btn-sm btn-warning" id="add_question"><small><i class="bi bi-plus me-2"></i>Add Question</small></div>
+            </div>
+
+            <div class="question-box mt-3">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 hover-effect">
+                        <div class="card shadow-sm">
+                            <div class="text-end"><div class="btn" id="edit_btn"><i class="bi bi-pencil-square"></i></div></div>
+                            <div class="card-body">
+                                <div class="text-primary"><span class="">01.</span> Select correct answer.</div>
+                                <div class="title fw-medium mt-3 mb-2">question title Lorem ipsum, dolor sit amet </div>
+                                <div class="w-100"><img src="./photo/download (1).jpg" alt="" class="w-100"></div>
+                                <div class="border mt-2 text-center shadow-sm py-1 rounded bg-success-muted">True</div>
+                                <div class="border mt-2 text-center shadow-sm py-1 rounded">False</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+
+        <%- include('partials/footer'); %>
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/all.js"></script>
+    <script>
+
+        let addQues = document.querySelector('#add_question'),
+            editBtn = document.querySelector('#edit_btn'),
+            craeteQues = document.querySelector('#create_question'),
+            cancelBtn = document.querySelector('#cancel_btn');
+
+        addQues.addEventListener('click', () => {
+            craeteQues.classList.remove('d-none');
+        });
+
+        editBtn.addEventListener('click', () => {
+            craeteQues.classList.remove('d-none');
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            craeteQues.classList.add('d-none');
+        })
+
+    </script>
+</body>
+</html>

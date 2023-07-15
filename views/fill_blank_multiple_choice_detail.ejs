@@ -1,0 +1,166 @@
+
+<%- include('partials/header'); %>
+
+</head>
+<body>
+    <%- include('partials/loading'); %>
+
+    <!-----------------------Main Content --------------->
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content min-vh-100">
+            <%- include('partials/check_message'); %>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/course">Course</a></li>
+                <li class="breadcrumb-item"><a href="/admin/units/<%= unit.courseId %>">Units</a></li>
+                <li class="breadcrumb-item"><a href="/admin/unit-detail/<%= unit._id %>"><%= unit.title %></a></li>
+                <li class="breadcrumb-item"><a href="/admin/quiz/<%= unit._id %>">Quiz</a></li>
+                <li class="breadcrumb-item"><a href="/admin/fill-blank-multiple-choice/<%= unit._id %>">Aduio Multiple Choice</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Detail</li>
+                </ol>
+            </nav>
+            <div class="unit-card card mx-auto p-4">
+                <h5 class="text-center mb-3">Edit Audio Multiple Choice</h5>
+                <form action="/admin/update-fill-blank-multiple-choice" method="post" onsubmit="showLoading();" enctype="multipart/form-data">
+                    <div class="input-group-sm mb-3 shadow-sm">
+                        <label for="upload" class="form-label mb-1 fw-medium"><small>Upload Audio</small></label>
+                        <input type="file" name="audio" class="form-control" id="upload" accept="audio/*">
+                    </div>
+                    <div class="input-group-sm mb-3 shadow-sm">
+                        <label for="correctAnswer" class="form-label mb-1 fw-medium"><small>Correct Answer</small></label>
+                        <input type="text" name="correctAnswer" value="<%= choice.correctAnswer %>" class="form-control" id="correctAnswer" required>
+                    </div>
+                    <div class="input-group-sm mb-3">
+                        <label for="" class="form-label mb-1 fw-medium"><small>Select Answer</small></label>
+                        <div class="row align-items-center">
+                            <div class="col-10">
+                                <input type="text" name="answerText1" value="<%= choice.answers[0].word %>" class="form-control" placeholder="option 1" required>
+                            </div>
+                            <div class="col-10 mt-1">
+                                <input type="text" name="prounced1" value="<%= choice.answers[0].prounced %>" class="form-control" placeholder="pronunciation" required>
+                            </div>
+                            <div class="col-1">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" name="isAnswer" value="1" required <%= choice.answers[0].isAnswer ? "checked" : "" %> >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mt-2">
+                            <div class="col-10">
+                                <input type="text" name="answerText2" value="<%= choice.answers[1].word %>" class="form-control" placeholder="option 2" required  >
+                            </div>
+                            <div class="col-10 mt-1">
+                                <input type="text" name="prounced2" value="<%= choice.answers[1].prounced %>" class="form-control" placeholder="pronunciation" required>
+                            </div>
+                            <div class="col-1">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" name="isAnswer" value="2" required <%= choice.answers[1].isAnswer ? "checked" : "" %> >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mt-2">
+                            <div class="col-10">
+                                <input type="text" name="answerText3" value="<%= choice.answers[2].word %>" class="form-control" placeholder="option 3" required>
+                            </div>
+                            <div class="col-10 mt-1">
+                                <input type="text" name="prounced3" value="<%= choice.answers[2].prounced %>" class="form-control" placeholder="pronunciation" required>
+                            </div>
+                            <div class="col-1">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" name="isAnswer" value="3" required <%= choice.answers[2].isAnswer ? "checked" : "" %> >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mt-2">
+                            <div class="col-10">
+                                <input type="text" name="answerText4" value="<%= choice.answers[3].word %>" class="form-control" placeholder="option 4" required>
+                            </div>
+                            <div class="col-10 mt-1">
+                                <input type="text" name="prounced4" value="<%= choice.answers[3].prounced %>" class="form-control" placeholder="pronunciation" required>
+                            </div>
+                            <div class="col-1">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" name="isAnswer" value="4" required <%= choice.answers[3].isAnswer ? "checked" : "" %> >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="input-group-sm mb-3 shadow-sm">
+                        <label for="" class="form-label mb-1 fw-medium"><small>Select Answer</small></label>
+                        <div class="row align-items-center shadow-sm">
+                            <div class="col-10">
+                                <input type="text" name="answerText1" value="<%= choice.answers[0].word %>" class="form-control" placeholder="option 1" required>
+                            </div>
+                            <div class="col-1">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" name="isAnswer" value="1" required <%= choice.answers[0].isAnswer ? "checked" : "" %> >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mt-2 shadow-sm">
+                            <div class="col-10">
+                                <input type="text" name="answerText2" value="<%= choice.answers[1].word %>" class="form-control" placeholder="option 2" required  >
+                            </div>
+                            <div class="col-1">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" name="isAnswer" value="2" required <%= choice.answers[1].isAnswer ? "checked" : "" %> >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mt-2 shadow-sm">
+                            <div class="col-10">
+                                <input type="text" name="answerText3" value="<%= choice.answers[2].word %>" class="form-control" placeholder="option 3" required>
+                            </div>
+                            <div class="col-1">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" name="isAnswer" value="3" required <%= choice.answers[2].isAnswer ? "checked" : "" %> >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mt-2 shadow-sm">
+                            <div class="col-10">
+                                <input type="text" name="answerText4" value="<%= choice.answers[3].word %>" class="form-control" placeholder="option 4" required>
+                            </div>
+                            <div class="col-1">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" name="isAnswer" value="4" required <%= choice.answers[3].isAnswer ? "checked" : "" %> >
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <input type="hidden" name="unitId" value="<%= unitId %>">
+                    <input type="hidden" name="index" value="<%= index %>">
+                    <div class="d-flex justify-content-end align-items-center">
+                        <input type="submit" class="btn btn-sm btn-success" value="Update">
+                    </div>
+                </form>
+            </div>
+        </article>
+        <%- include('partials/footer'); %>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/all.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+        let addBtn = document.querySelector('#add_unit');
+        let createUnit = document.querySelector('#create_unit');
+        let cancelBtn = document.querySelector('#cancel_btn');
+        addBtn.addEventListener('click', () => {
+            createUnit.classList.remove('d-none');
+        });
+        cancelBtn.addEventListener('click', () => {
+            createUnit.classList.add('d-none');
+        });
+
+
+    </script>
+</body>
+</html>

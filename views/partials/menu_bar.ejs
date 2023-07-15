@@ -1,0 +1,169 @@
+<!---------------------------- navbar ----------------------------------------->
+<nav class="bg-primary position-fixed top-0 w-100 px-4">
+    <div class="d-flex justify-content-between align-items-center text-white" style="height: 70px;">
+        <h4 class="title fw-bold p-0 m-0"><span>Nihongo</span></h4>
+        <div class="admin-name fw-medium d-none d-xl-block">
+            <small><%= "Admin" %></small>
+        </div>
+        <div class="menu-icon d-lg-block d-xl-none" style="cursor: pointer;">
+            <i class="bi bi-list"></i>
+        </div>
+    </div>
+</nav>
+
+<!---------------------------- sidebar  ----------------------------------------->
+<article class="sidebar position-fixed top-0 bg-white text-primary px-3 fadeIn d-none d-xl-block">
+    
+    <div class="d-flex justify-content-end d-block d-xl-none menu-close">
+        <div class="shadow-lg bg-danger text-white d-flex justify-content-center align-items-center rounded-circle" style="width: 25px;height: 25px;cursor: pointer;">
+            <i class="bi bi-x m-0 p-0"></i>
+        </div>
+    </div>
+
+    <div class="dashboard mt-4">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="">
+                <i class="bi bi-grid"></i>
+                <a href="#" class="fw-medium ms-2">Dashboard</a>
+            </div>
+            <a href="#" class="fadeIn" id="dashboard_open"><i class="fa-solid fa-angle-right"></i></a>
+            <a href="#" class="fadeIn d-none" id="dashboard_close"><i class="fa-solid fa-angle-down"></i></a>
+        </div>
+        <div class="mt-3 ps-3 d-none fadeIn" id="home">
+            <i class="bi bi-house"></i>
+            <a href="/admin/home" class="fw-medium ms-2">Home</a>
+        </div>
+    </div>
+
+    <div class="course-management mt-4">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="">
+                <i class="bi bi-file-text"></i>
+                <a href="#" class="fw-medium ms-2">Courses Management</a>
+            </div>
+            <a href="#" class="fadeIn" id="course_open"><i class="fa-solid fa-angle-right"></i></a>
+            <a href="#" class="fadeIn d-none" id="course_close"><i class="fa-solid fa-angle-down"></i></a>
+        </div>
+        <div class="mt-3 ps-3 d-none fadeIn" id="courses">
+            <i class="bi bi-book-half"></i>
+            <a href="/admin/course" class="fw-medium ms-2">Courses</a>
+        </div>
+    </div>
+
+    <div class="order-management mt-4">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="">
+                <i class="bi bi-cart"></i>
+                <a href="#" class="fw-medium ms-2">Order Management</a>
+            </div>
+            <a href="#" class="fadeIn" id="order_open"><i class="fa-solid fa-angle-right"></i></a>
+            <a href="#" class="fadeIn d-none" id="order_close"><i class="fa-solid fa-angle-down"></i></a>
+        </div>
+        <div class="mt-3 ps-3 d-none fadeIn" id="order">
+            <div>
+                <i class="bi bi-bag-check"></i>
+                <a href="/admin/order" class="fw-medium ms-2">Orders</a>
+            </div>
+
+            <div class="mt-2">
+                <i class="bi bi-people"></i>
+                <a href="/admin/students" class="fw-medium ms-2">Students</a>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="setting mt-4">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="">
+                <i class="bi bi-gear"></i>
+                <a href="#" class="fw-medium ms-2">Setting</a>
+            </div>
+            <a href="#" class="fadeIn" id="setting_open"><i class="fa-solid fa-angle-right"></i></a>
+            <a href="#" class="fadeIn d-none" id="setting_close"><i class="fa-solid fa-angle-down"></i></a>
+        </div>
+        <div class="mt-3 ps-3 d-none fadeIn" id="setting">
+            
+            <div>
+                <i class="bi bi-arrow-clockwise"></i>
+                <a href="/admin/setting" class="fw-medium ms-2">Activate code</a>
+            </div>
+
+           <div class="mt-2">
+            <i class="bi bi-file-earmark-ruled"></i>
+                <a href="/admin/faqs" class="fw-medium ms-2">FAQs</a>
+           </div>
+
+            <div class="mt-2">
+                <i class="bi bi-journals"></i>
+                <a href="/admin/feedbacks" class="fw-medium ms-2">Feedbacks</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="user-management mt-4">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="">
+                <i class="bi bi-people-fill"></i>
+                <a href="#" class="fw-medium ms-2">User Management</a>
+            </div>
+            <a href="#" class="fadeIn" id="user_open"><i class="fa-solid fa-angle-right"></i></a>
+            <a href="#" class="fadeIn d-none" id="user_close"><i class="fa-solid fa-angle-down"></i></a>
+        </div>
+        <div class="mt-3 ps-3 d-none fadeIn" id="user">
+            <i class="bi bi-person-plus"></i>
+            <a href="/admin/users" class="fw-medium ms-2">Users</a>
+        </div>
+    </div>
+
+    <!-- <div class="users-reports mt-4">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="">
+                <i class="bi bi-card-text"></i>
+                <a href="#" class="fw-medium ms-2">Users Reports</a>
+            </div>
+            <a href="#" class="fadeIn" id="report_open"><i class="fa-solid fa-angle-right"></i></a>
+            <a href="#" class="fadeIn d-none" id="report_close"><i class="fa-solid fa-angle-down"></i></a>
+        </div>
+        <div class="mt-3 ps-3 d-none fadeIn" id="report">
+            <i class="bi bi-card-checklist"></i>
+            <a href="/reports" class="fw-medium ms-2">Reports</a>
+        </div>
+    </div>
+
+    <div class="role-permission mt-4">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="">
+                <i class="bi bi-shield-exclamation"></i>
+                <a href="#" class="fw-medium ms-2">Role & Permission</a>
+            </div>
+            <a href="#" class="fadeIn" id="role_open"><i class="fa-solid fa-angle-right"></i></a>
+            <a href="#" class="fadeIn d-none" id="role_close"><i class="fa-solid fa-angle-down"></i></a>
+        </div>
+        <div class="ps-3 d-none fadeIn" id="role">
+            <div class="mt-3">
+                <i class="bi bi-patch-check"></i>
+                <a href="#" class="fw-medium ms-2">Roles</a>
+            </div>
+            <div class="mt-3">
+                <i class="bi bi-key-fill"></i>
+                <a href="#" class="fw-medium ms-2">Permissions</a>
+            </div>
+            <div class="mt-3">
+                <i class="bi bi-person-check-fill"></i>
+                <a href="/assignrole" class="fw-medium ms-2">Assign Role</a>
+            </div>
+            <div class="mt-3">
+                <i class="bi bi-info-circle"></i>
+                <a href="/help" class="fw-medium ms-2">Help</a>
+            </div>
+        </div>
+    </div> -->
+        
+    <div class="mt-3">
+        <div class="admin-name fw-medium d-lg-block d-xl-none">
+            <small>Admin Name</small>
+        </div>
+    </div>
+
+</article>

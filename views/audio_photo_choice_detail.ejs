@@ -1,0 +1,203 @@
+
+<%- include('partials/header'); %>
+
+</head>
+<body>
+    <%- include('partials/loading'); %>
+    <div class="create min-vh-100 w-100 position-fixed top-0 d-flex justify-content-center align-items-center fadeIn d-none" id="edit_question">
+    
+        <div class="new-content rounded py-4 px-3 shadow-sm">
+            <h5 class="text-center mb-3">Edit Audio&Photo Multiple Choice</h5>
+            <form action="/admin/update-audio-photo-multiple-choice" method="post" onsubmit="showLoading();" enctype="multipart/form-data">
+                <!-- <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="upload_audio" class="form-label mb-1 fw-medium"><small>Upload Audio</small></label>
+                    <input type="file" name="audio" class="form-control" id="upload_audio" accept="audio/*">
+                </div> -->
+
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="audio" class="form-label mb-1 fw-medium"><small>Correct Answer</small></label>
+                    <input type="text" name="audio" value="<%= choice.audio %>" class="form-control" id="audio" required>
+                </div>
+
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="correctAnswer" class="form-label mb-1 fw-medium"><small>Correct Answer</small></label>
+                    <input type="text" name="correctAnswer" value="<%= choice.correctAnswer %>" class="form-control" id="correctAnswer" required>
+                </div>
+    
+                <div class="input-group-sm mb-3">
+                    <div class="row align-items-center">
+                        <div class="col-12 mb-1">
+                            <input type="text" name="answerText1" value="<%= choice.answers[0].word %>" class="form-control" placeholder="option 1" required>
+                        </div>
+                        <div class="col-5">
+                            <input type="text" name="prounced1" value="<%= choice.answers[0].prounced %>" class="form-control" placeholder="pronunciation" required>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-check">
+                                <input type="file" name="answerPhoto1" class="form-control" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check">
+                                <input type="radio" name="isAnswer" value="1" class="form-check-input" required  <%= choice.answers[0].isAnswer ? "checked" : "" %> >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-2">
+                        <div class="col-12 mb-1">
+                            <input type="text" name="answerText2" value="<%= choice.answers[1].word %>" class="form-control" placeholder="option 2" required>
+                        </div>
+                        <div class="col-5">
+                            <input type="text" name="prounced2" value="<%= choice.answers[1].prounced %>" class="form-control" placeholder="pronunciation" required>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-check">
+                                <input type="file" name="answerPhoto2"  class="form-control" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check">
+                                <input type="radio" name="isAnswer" value="2" class="form-check-input" required <%= choice.answers[1].isAnswer ? "checked" : "" %> >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-2 shadow-sm">
+                        <div class="col-12 mb-1">
+                            <input type="text" name="answerText3" value="<%= choice.answers[2].word %>" class="form-control" placeholder="option 3" required>
+                        </div>
+                        <div class="col-5">
+                            <input type="text" name="prounced3" value="<%= choice.answers[2].prounced %>" class="form-control" placeholder="pronunciation" required>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-check">
+                                <input type="file" name="answerPhoto3"  class="form-control" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check">
+                                <input type="radio" name="isAnswer" value="3" class="form-check-input" required <%= choice.answers[2].isAnswer ? "checked" : "" %> >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-2 shadow-sm">
+                        <div class="col-12 mb-1">
+                            <input type="text" name="answerText4" value="<%= choice.answers[3].word %>" class="form-control" placeholder="option 4" required>
+                        </div>
+                        <div class="col-5">
+                            <input type="text" name="prounced4" value="<%= choice.answers[3].prounced %>" class="form-control" placeholder="pronunciation" required>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-check">
+                                <input type="file" name="answerPhoto4"  class="form-control" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check">
+                                <input type="radio" name="isAnswer" value="4" class="form-check-input" required <%= choice.answers[3].isAnswer ? "checked" : "" %> >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="unitId" value="<%= unitId %>">
+                <input type="hidden" name="index" value="<%= index %>">
+                <div class="d-flex justify-content-end align-items-center">
+                    <div class="btn btn-sm btn-danger me-2" id="cancel_btn">Cancel</div>
+                    <input type="submit" class="btn btn-sm btn-success"  value="Update">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-----------------------Main Content --------------->
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content min-vh-100">
+            <%- include('partials/check_message'); %>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/course">Course</a></li>
+                <li class="breadcrumb-item"><a href="/admin/units/<%= unit.courseId %>">Units</a></li>
+                <li class="breadcrumb-item"><a href="/admin/unit-detail/<%= unit._id %>"><%= unit.title %></a></li>
+                <li class="breadcrumb-item"><a href="/admin/quiz/<%= unit._id %>">Quiz</a></li>
+                <li class="breadcrumb-item"><a href="/admin/audio-photo-multiple-choice/<%= unit._id %>">Audio&Photo Multiple Choice</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Detail</li>
+                </ol>
+            </nav>
+
+
+
+            <div class="mt-3">
+                <div class="unit-card card mx-auto" style="width: 450px;">
+                    <div class="text-end"><div class="btn" id="edit_btn"><i class="bi bi-pencil-square"></i></div></div>
+                    <div class="card-body pt-0">
+                        <h5 class="text-center text-primary">Audio&Photo Multiple Choice</h5>
+                        <!-- <div class="w-100 mt-2 mb-2">
+                            <audio controls class="w-100">
+                                <source src="<%= choice.audio %>" type="audio/ogg">
+                                <source src="<%= choice.audio %>" type="audio/mpeg">
+                              Your browser does not support the audio element.
+                            </audio>
+                        </div> -->
+                        <p><%= choice.audio %></p>
+                        
+                        <% choice.answers.forEach((answer) => { %>
+                            <div class="card mb-2">
+                                <div class="row">
+                                    <div class="col-4 border-right">
+                                        <img  class="w-100" src="<%= answer.photo %>" alt="Invalid image">
+                                    </div>
+                                    <div class="col-8">
+                                        <p class="mt-2"><small><%= answer.prounced %></small></p>
+                                        <h6 class="mt-2"><%= answer.word %></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </article>
+
+        <%- include('partials/footer'); %>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/all.js"></script>
+    <script>
+
+        function checkAnswer(index)
+        {
+            if(choice.answers[index].isAnswer){
+                return "checked";
+            }else{
+                return "";
+            }
+        }
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+        let editBtn = document.querySelector('#edit_btn'),
+        editQuestion = document.querySelector('#edit_question'),
+        cancelBtn = document.querySelector('#cancel_btn');
+
+        editBtn.addEventListener('click', () => {
+            editQuestion.classList.remove('d-none');
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            editQuestion.classList.add('d-none');
+        });
+
+    </script>
+</body>
+</html>

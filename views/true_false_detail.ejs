@@ -1,0 +1,90 @@
+<%- include('partials/header'); %>
+
+</head>
+<body>
+    <%- include('partials/loading'); %>
+
+    <!-----------------------Main Content --------------->
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content min-vh-100">
+            <%- include('partials/check_message'); %>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/course">Course</a></li>
+                <li class="breadcrumb-item"><a href="/admin/units/<%= unit.courseId %>">Units</a></li>
+                <li class="breadcrumb-item"><a href="/admin/unit-detail/<%= unit._id %>"><%= unit.title %></a></li>
+                <li class="breadcrumb-item"><a href="/admin/quiz/<%= unit._id %>">Quiz</a></li>
+                <li class="breadcrumb-item"><a href="/admin/true-false/<%= unit._id %>">True False</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Detail</li>
+                </ol>
+            </nav>
+
+            <div class="unit-card card mx-auto p-4">
+                <h5 class="text-center mb-3">Edit True/False</h5>
+                <form action="/admin/update-true-false" method="post">
+                    <div class="input-group-sm mb-3 shadow-sm">
+                        <label for="question" class="form-label mb-1 fw-medium"><small>Question</small></label>
+                        <input type="text" name="question" value="<%= trueFalse.question %>" class="form-control" id="question" required>
+                    </div>
+                    <div class="input-group-sm mb-3 shadow-sm">
+                        <label for="correct_answer" class="form-label mb-1 fw-medium"><small>Correct Answer</small></label>
+                        <input type="text" name="correctAnswer" value="<%= trueFalse.correctAnswer %>" class="form-control" id="correct_answer" required>
+                    </div>
+                    <div class="input-group-sm mb-3">
+                        <label for="upload" class="form-label mb-1 fw-medium"><small>Select Correct Answer</small></label>
+                        <div class="d-flex align-items-center">
+                            <span class="me-2 border w-100 text-center py-1 bg-white rounded shadow-sm">True</span>
+                            <div class="form-check">
+                                <input class="form-check-input" required type="radio" value="1" name="answer" id="true-false-check"  <% if(trueFalse.answer == "1"){ %> <%= "checked"%> <% }%>  />
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mt-2">
+                            <span class="me-2 border w-100 text-center py-1 bg-white rounded shadow-sm">False</span>
+                            <div class="form-check">
+                                <input class="form-check-input" required type="radio" value="0" name="answer" id="true-false-check"  <% if(trueFalse.answer == "0"){ %> <%= "checked"%> <% }%> />
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="unitId" value="<%= unitId %>">
+                    <input type="hidden" name="index" value="<%= index %>">
+                    <div class="d-flex justify-content-end align-items-center">
+                        
+                        <input type="submit" class="btn btn-sm btn-success" value="Update">
+                    </div>
+                </form>
+            </div>
+        </article>
+
+        <%- include('partials/footer'); %>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="/js/all.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+        let addBtn = document.querySelector('#add_unit');
+        let createUnit = document.querySelector('#create_unit');
+        let cancelBtn = document.querySelector('#cancel_btn');
+
+        addBtn.addEventListener('click', () => {
+            createUnit.classList.remove('d-none');
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            createUnit.classList.add('d-none');
+        });
+    </script>
+</body>
+</html>

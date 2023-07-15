@@ -1,0 +1,134 @@
+<%- include('partials/header'); %>
+
+</head>
+<body>
+
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content  course-detail-content min-vh-100">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin/course">Course</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/units/<%= unit.courseId %>">Units</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/unit-detail/<%= unit._id %>"><%= unit.title %></a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Quiz</li>
+                    </ol>
+                </nav>
+              <div class="table-container mt-3 py-3 px-2 bg-white shadow-sm">
+                <h5 class="text-center mb-3"><%= unit.title %></h5>
+                <table id="example" class="display bg-white" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Quiz</th>
+                            <th>No</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>True False</td>
+                            <td><%= unit.quiz.trueFalse.length %></td>
+                            <td>
+                                <a href="/admin/true-false/<%= unit._id %>" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Sentence Arrange</td>
+                            <td><%= unit.quiz.sentenceArrange.length %></td>
+                            <td>
+                                <a href="/admin/sentence-arrange/<%= unit._id %>" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Sentence Arrange With Audio</td>
+                            <td><%= unit.quiz.sentenceArrangeWithAudio.length %></td>
+                            <td>
+                                <a href="/admin/audio-sentence-arrange/<%= unit._id %>" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Matching</td>
+                            <td><%= unit.quiz.matching.length %></td>
+                            <td>
+                                <a href="/admin/matching/<%= unit._id %>" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Text Multiple Choice</td>
+                            <td><%= unit.quiz.multipleChoiceWithText.length %></td>
+                            <td>
+                                <a href="/admin/text-multiple-choice/<%= unit._id%>" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pargraph Multiple Choice</td>
+                            <td><%= unit.quiz.multipleChoiceWithParagraph.length %></td>
+                            <td>
+                                <a href="/admin/paragraph-multiple-choice/<%= unit._id%>" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Photo Multiple Choice</td>
+                            <td><%= unit.quiz.multipleChoiceWithPhoto.length %></td>
+                            <td>
+                                <a href="/admin/photo-multiple-choice/<%= unit._id%>" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Fill Blank Multiple Choice</td>
+                            <td><%= unit.quiz.multipleChoiceWithAudio.length %></td>
+                            <td>
+                                <a href="/admin/audio-multiple-choice/<%= unit._id%>" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Audio Multiple Choice</td>
+                            <td><%= unit.quiz.multipleChoiceWithFillBlank.length %></td>
+                            <td>
+                                <a href="/admin/fill-blank-multiple-choice/<%= unit._id%>" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Audio&Photo Multiple Choice</td>
+                            <td><%= unit.quiz.multipleChoiceWithAudioPhoto.length %></td>
+                            <td>
+                                <a href="/admin/audio-photo-multiple-choice/<%= unit.id %>" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <%- include('partials/footer'); %>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/all.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+        let addUnitbtn = document.querySelector('#add_unit'),
+            craeteQues = document.querySelector('#create_question'),
+            cancelBtn = document.querySelector('#cancel_btn');
+
+        addUnitbtn.addEventListener('click', () => {
+            craeteQues.classList.remove('d-none');
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            craeteQues.classList.add('d-none');
+        })
+
+    </script>
+</body>
+</html>

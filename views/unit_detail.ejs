@@ -1,0 +1,95 @@
+<%- include('partials/header'); %>
+
+</head>
+<body>
+
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content  course-detail-content min-vh-100">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="/admin/course">Course</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"><a href="/admin/units/<%= unit.courseId %>"><%= unit.title %></a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Detail</li>
+                </ol>
+              </nav>
+              <div class="table-container mt-3 py-3 px-2 bg-white shadow-sm">
+                <h5 class="text-center mb-3"><%= unit.title %></h5>
+                <table id="example" class="display bg-white" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Categories</th>
+                            <th>Total NO</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Vocabulary</td>
+                            <td><%= unit.vocabularies.length %></td>
+                            <td>
+                                <a href="/admin/vocabulary/<%= unit.id %>" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Grammar</td>
+                            <td><%= unit.grammars.length %></td>
+                            <td>
+                                <a href="/admin/grammar/<%= unit._id %>" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Conversation</td>
+                            <td><%= unit.conversations.length %></td>
+                            <td>
+                                <a href="/admin/conversation/<%= unit._id %>" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Renshuu</td>
+                            <td><%= unit.renshuus.length %></td>
+                            <td>
+                                <a href="/admin/renshuu/<%= unit._id %>" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Exercise</td>
+                            <td><%= unit.exercises.length %></td>
+                            <td>
+                                <a href="/admin/exercise/<%= unit._id %>" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Kanji</td>
+                            <td><%= unit.kanjis.length %></td>
+                            <td>
+                                <a href="/admin/kanji/<%= unit.id %>" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <%- include('partials/footer'); %>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/all.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<%- include('partials/header'); %>
+
+</head>
+<body>
+    <%- include('partials/loading'); %>
+    <%- include('partials/delete_alert_box'); %>
+    <!---------------------------- add question -----------------------------------------> 
+    <div class="create min-vh-100 w-100 position-fixed top-0 d-flex justify-content-center align-items-center fadeIn d-none" id="create_question">
+        <div class="new-content rounded py-4 px-3 shadow-sm">
+            <h5 class="text-center mb-3">Add Sentence Rearrange</h5>
+            <form action="/admin/audio-sentence-arrange" method="post" onsubmit="showLoading();" enctype="multipart/form-data">
+                <!-- <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="audio_sentence" class="form-label mb-1 fw-medium"><small>Add Question</small></label>
+                    <input type="text" name="answerSentence" class="form-control" id="audio_sentence" required>
+                </div> -->
+                <div class="mb-3 input-group-sm">
+                    <label for="upload_audio" class="form-label fw-medium mb-1"><small>Upload Audio</small></label>
+                    <input type="file" name="audio" class="form-control" id="upload_audio" accept="audio/*" required>
+                </div>
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="correct_answer" class="form-label mb-1 fw-medium"><small>Add Correct Answer</small></label>
+                    <input type="text" name="correctAnswer" class="form-control" id="correct_answer" required>
+                </div>
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="mixing_sentence" class="form-label mb-1 fw-medium"><small>Add Rearrange Sentence</small></label>
+                    <input type="text" name="mixSentence" class="form-control" id="mixing_sentence" placeholder="Pleace sperate each word by space" required>
+                </div>
+                <input type="hidden" name="unitId" value="<%= unit._id %>" >
+                <div class="d-flex justify-content-end align-items-center mt-2">
+                    <div class="btn btn-sm btn-danger me-2" id="cancel_btn">Cancel</div>
+                    <input type="submit" class="btn btn-sm btn-success" value="Create">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content min-vh-100">
+            <%- include('partials/check_message'); %>
+           <div class="d-flex flex-wrap justify-content-between align-items-center">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/course">Course</a></li>
+                <li class="breadcrumb-item"><a href="/admin/units/<%= unit.courseId %>">Units</a></li>
+                <li class="breadcrumb-item"><a href="/admin/unit-detail/<%= unit._id %>"><%= unit.title %></a></li>
+                <li class="breadcrumb-item"><a href="/admin/quiz/<%= unit._id %>">Quiz</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Sentence Arrange With Audio</li>
+                </ol>
+            </nav>
+               <div class="btn btn-sm btn-warning" id="add_question"><small><i class="bi bi-plus me-2"></i>Add Question</small></div>
+           </div>
+           <div class="table-container mt-3 py-3 px-2 bg-white shadow-sm">
+               <table id="example" class="display bg-white" style="width:100%">
+                   <thead>
+                       <tr>
+                           <th>Sentence Arrange</th>
+                           <th>Action</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <%  for(var i = 0; i < unit.quiz.sentenceArrangeWithAudio.length; i++){ %>
+                           <tr>
+                               <td><%= "Sentence Arrange With Audio" + (i + 1) %></td>
+                               <td>
+                                   <a href="/admin/audio-sentence-arrange-detail/<%= unit._id %>/<%= i %>" class="text-info text-decoration-underline mx-2">more Info</a>
+
+                                    <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDeleteData('/admin/delete-audio-sentence-arrange/<%= unit._id %>/<%= i %>')">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </a>
+                               
+                                </td>
+                           </tr>
+                       <% } %>
+                       
+                   </tbody>
+               </table>
+           </div>
+       </article>
+
+        <%- include('partials/footer'); %>
+
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" ></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+    <script src="/js/all.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+        
+        let addQues = document.querySelector('#add_question'),
+            craeteQues = document.querySelector('#create_question'),
+            cancelBtn = document.querySelector('#cancel_btn');
+
+        addQues.addEventListener('click', () => {
+            craeteQues.classList.remove('d-none');
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            craeteQues.classList.add('d-none');
+        });
+
+        function setDeleteData(link){
+            let deleteBtn = document.querySelector('#deleteButtonID');
+            deleteBtn.href = link;
+        }
+
+
+    </script>
+</body>
+</html>

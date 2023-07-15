@@ -1,0 +1,100 @@
+<%- include('partials/header'); %>
+
+</head>
+<body>
+
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content min-vh-100">
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/course">Course</a></li>
+                        <li class="breadcrumb-item"><a href="/course_detail">Course Details</a></li>
+                        <li class="breadcrumb-item"><a href="/practice">Practice</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Practice Title</li>
+                      </ol>
+                </nav>
+            </div>
+            <div class="table-container mt-3 py-3 px-2 bg-white shadow-sm">
+                <table id="example" class="display bg-white" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>True or Faluse</td>
+                            <td>
+                                <a href="/practice_truefalse" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Matching</td>
+                            <td>
+                                <a href="/practice_matching" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Multiple Choice (Text)</td>
+                            <td>
+                                <a href="/practice_multiple_text" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Multiple Choice (Photo)</td>
+                            <td>
+                                <a href="/practice_multiple_photo" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Multiple Choice (Audio)</td>
+                            <td>
+                                <a href="/practice_multiple_audio" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rearrange Sentence</td>
+                            <td>
+                                <a href="/practice_rearrange_sentence" class="text-info text-decoration-underline">more Info</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <%- include('partials/footer'); %>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/all.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+        let addUnit = document.querySelector('#add_unit'),
+            createUnit = document.querySelector('#create_unit'),
+            cancelBtn = document.querySelector('#cancel_btn');
+
+        addUnit.addEventListener('click', () => {
+            createUnit.classList.remove('d-none');
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            createUnit.classList.add('d-none');
+        })
+
+    </script>
+</body>
+</html>

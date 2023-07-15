@@ -1,0 +1,136 @@
+<%- include('partials/header'); %>
+<link rel="stylesheet" href="css/setting.css">
+
+</head>
+<body>
+    <%- include('partials/loading'); %>
+    <%- include('partials/delete_alert_box'); %>
+    <%
+    function dateToString(date)
+        {
+            
+            var year = date.getFullYear();
+            var mes = date.getMonth()+1;
+            var dia = date.getDate();
+            var fecha =dia+"-"+mes+"-"+year;
+            return fecha;
+        }
+    %>
+    <!---------------------------- create course -----------------------------------------> 
+    <div class="create min-vh-100 w-100 position-fixed top-0 d-flex justify-content-center align-items-center fadeIn d-none" id="create_code">
+        <div class="new-content rounded py-4 px-3 shadow-sm">
+            <h5 class="text-center mb-3">Add Course</h5>
+            <form action="/admin/generate-code" method="post" onsubmit="showLoading();">
+                <div class="input-group-sm mb-2 shadow-sm">
+                    <label for="course" class="form-label mb-1"><small>Course </small></label>
+                    
+                    <select name="course" class="form-select" id="">
+                        <% courses.forEach((course) => { %>
+                            <option value="<%= course._id %>"><%= course.name %></option>
+                        <% })%> 
+                    </select>
+                </div>
+                <div class="input-group-sm mb-2 shadow-sm">
+                    <label for="count" class="form-label mb-1"><small>Count</small></label>
+                    <input type="count" name="count" class="form-control" id="count" required>
+                </div>
+                <div class="d-flex justify-content-end align-items-center">
+                    <div class="btn btn-sm btn-danger me-2" id="cancel_btn">Cancel</div>
+                    <input type="submit" class="btn btn-sm btn-success" name="Create" value="Create">
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content setting-content min-vh-100">
+            <%- include('partials/check_message'); %>
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <h5 class="">Activate Codes</h5>
+                <div class="d-flex flex-wrap justify-content-between align-items-end ">
+                    <div class="btn btn-sm btn-warning" id="add_code"><small><i class="bi bi-plus me-2"></i>Add Code</small></div>
+                    <div class="mx-5">
+                        <input type="file" class="d-none" id="filepicker">
+                        <a href="/admin/download-code"  class="bg-white rounded shadow-sm d-flex justify-content-between align-items-center">
+                            <div class="px-4"><small class="" id="output">CSV</small></div>
+                            <div class="btn btn-sm btn-warning" id="export">Export</div>
+                        </a>
+                    
+                    </div>
+                </div>
+            </div>
+            <div class="table-container mt-3 py-3 px-2 bg-white shadow-sm">
+                <table id="example" class="display bg-white" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>Code</th>
+                            <th>User</th>
+                            <th>Active</th>
+                            <th>Created At</th>
+                            <th>Expire Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i = 0; i < codes.length; i++){ %>
+                            <tr>
+                                <td><%= codes[i].courseName %></td>
+                                <td><%= codes[i].code %></td>
+                                <td><%= codes[i].username %></td>
+                                <td><div class="active me-2 bg-success"></div><%= codes[i].isUsed ? "Active" : "Not Use" %></td>   
+                                <td><%= dateToString(codes[i].createdAt) %></td>
+                                <td><%= codes[i].expireDate == null ? "-" : dateToString(codes[i].expireDate) %></td>
+                                <td>
+                                    <a href="/admin/update-lifetime-code/<%= codes[i]._id %>" class="text-success mx-3"><i class="bi bi-arrow-clockwise"></i></a>
+                                    <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDeleteData('/admin/delete-code/<%= codes[i]._id %>')">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <%- include('partials/footer'); %>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+    <script src="/js/all.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+        let addCode = document.querySelector('#add_code'),
+            createCode = document.querySelector('#create_code'),
+            cancelBtn = document.querySelector('#cancel_btn');
+
+        addCode.addEventListener('click', () => {
+            createCode.classList.remove('d-none');
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            createCode.classList.add('d-none');
+        });
+
+         
+        function setDeleteData(link){
+            let deleteBtn = document.querySelector('#deleteButtonID');
+            deleteBtn.href = link;
+        }
+
+
+    </script>
+</body>
+</html>

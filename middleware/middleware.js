@@ -1,8 +1,8 @@
 var jwt = require('jsonwebtoken');
 
 class Middleware {
-    static adminSecret = process.env.ADMIN_SECRET;
-    static userSecret = process.env.USER_SECRET;
+    static adminSecret = "I am Admin.";
+    static userSecret = "I am User.";
 
     static checkAdmin(req, res, next) {
         const secret = process.env.ADMIN_SECRET;
@@ -16,7 +16,7 @@ class Middleware {
         });
     }
 
-    static authUser(req, res, next) {
+    static checkUser(req, res, next) {
         const secret = process.env.USER_SECRET;
         const authHeader = req.headers["authorization"];
         if (!authHeader) return res.sendStatus(401);
@@ -34,6 +34,7 @@ class Middleware {
         const user = jwt.verify(token, Middleware.userSecret);
         return user._id;
     }
+    
     static generateAdminToken(admin){
         var token = jwt.sign(JSON.stringify(admin), Middleware.adminSecret);
         return token;

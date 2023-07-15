@@ -1,0 +1,24 @@
+.home-content .home-card-icon{
+    width: 70px;
+    height: 70px;
+}
+
+.home-content .home-card-icon i{
+    font-size: 40px;
+}
+
+@media (max-width:400px) {
+    .home-content .home-card-icon{
+        width: 50px !important;
+        height: 50px !important;
+    }
+    .home-content .home-card-icon i{
+        font-size: 30px;
+    }
+    .home-content .text-center h5{
+        font-size: 18px !important;
+    }
+    .home-content .text-center h6{
+        font-size: 16px !important;
+    }
+}

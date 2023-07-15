@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    box-sizing: border-box !important;
+    text-decoration: none !important;
+    scroll-behavior: smooth;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root{
+    --primary-color : #48A4B7;
+    --secondary-color : #F5F5F5;
+    --success-color : #45C8AF;
+    --gold-color : gold;
+    --success-mute-color : rgba(96, 236, 169, 0.3);
+}
+
+/* scrollbar
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    transition: 1s ease;
+}
+
+a{
+    color: var(--primary-color) !important;
+}
+.bg-primary{
+    background-color: var(--primary-color) !important;
+}
+.text-success{
+    color: var(--success-color) !important;
+}
+.bg-success{
+    background-color: var(--success-color) !important;
+}
+.bg-success-muted{
+    background-color: var(--success-mute-color) !important;
+}
+.bg-secondary{
+    background-color: var(--secondary-color) !important;
+}
+.text-primary{
+    color: var(--primary-color) !important;
+}
+.fw-bold{
+    font-weight: 700 !important;
+}
+.fw-medium{
+    font-weight: 500 !important;
+}
+.fw-regular{
+    font-weight: 400 !important;
+}
+.fw-light{
+    font-weight: 300 !important;
+}
+.fadeIn{
+    animation: fadein 0.5s;
+}
+@keyframes fadein {
+    0%{opacity: 0%;}
+    100%{opacity: 100%;}
+}
+
+/* for table  */
+.table-container{
+    overflow-x: scroll;
+}
+#example thead tr{
+    font-size: 20px !important;
+    color: var(--primary-color);
+}
+#example tbody tr, #example_info,#example_previous,#example_next{
+    font-size: 16px !important;
+}
+.paginate_button{
+    font-size: 16px !important;
+}
+#example_lenght option {
+    font-size: 16px !important;
+}
+
+/* for modal box  */
+.create{
+    padding: 0 20px;
+    background-color: rgba(0,0,0,0.2);
+    z-index: 1100;
+}
+.new-content{
+    width: 450px;
+    max-height: 80vh;
+    overflow-y: scroll;
+    background-color: #F5F5F5;
+}
+
+/* for unit card  */
+.unit-card{
+    width: 450px;
+    margin: 0 auto;
+}
+
+/* for hover effect  */
+.hover-effect{
+    transition: 0.3s ease-in-out;
+}
+.hover-effect:hover{
+    transform: scale(0.95);
+}
+
+/* navbar  */
+nav{
+    z-index: 1000;
+}
+nav .title>span{
+    color: var(--gold-color);
+}
+.menu-icon{
+    cursor: pointer;
+}
+.menu-icon i{
+    font-size: 30px !important;
+}
+
+/* loading  */
+.loader-container{
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+}
+.loader-box{
+    width: 230px;
+    height: 100px;
+    border-radius: 15px;
+}
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid rgb(0, 0, 0);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+.hide-loading{
+    display: none !important;
+}
+.show-loadin{
+    display: block;
+}
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* sidebar  */
+.sidebar{
+    height: 100vh;
+    padding: 80px 0 40px;
+    width: 270px;
+    box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1);
+    z-index: 900;
+    overflow-y: scroll !important;
+}
+.sidebar a{
+    font-size: 16px !important;
+}
+.sidebar i{
+    font-size: 18px !important;
+    -webkit-text-stroke: 1px;
+}
+
+.content{
+    padding: 100px 20px 40px 300px;
+    background-color: var(--secondary-color);
+}
+.content h5{
+    color: var(--primary-color);
+}
+
+/* footer  */
+.footer{
+    padding-left: 300px;
+    background-color: #dcdcdc;
+    z-index: 800;
+}
+.footer span{
+    color: #AD71FC;
+}
+
+@media (max-width:1200px) {
+    .content{
+        padding: 100px 20px 40px !important;
+    }
+    .footer{
+        padding-left: 0px !important;
+    }
+}
+
+@media (max-width:470px) {
+    .breadcrumb-item a, .breadcrumb-item{
+        font-size: 16px !important;
+    }
+    .unit-card{
+        width: 90% !important;
+    }
+    .unit-card h6 {
+        font-size: 16px !important;
+    }
+    .unit-card small{
+        font-size: 14px !important;
+    }
+    .footer small{
+        font-size: 14px !important;
+    }
+}

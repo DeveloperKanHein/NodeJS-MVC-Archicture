@@ -1,0 +1,90 @@
+<%- include('partials/header'); %>
+
+</head>
+<body>
+
+    <!---------------------------- add unit -----------------------------------------> 
+    <div class="create min-vh-100 w-100 position-fixed top-0 d-flex justify-content-center align-items-center fadeIn d-none" id="create_unit">
+        <div class="new-content rounded py-4 px-3 shadow-sm">
+            <h5 class="text-center mb-3">Add Unit</h5>
+            <form action="">
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="unit_title" class="form-label fw-medium mb-1"><small>Unit Title</small></label>
+                    <input type="text" class="form-control" placeholder="Add Unit Title" required id="unit_title">
+                </div>
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="title" class="form-label fw-medium mb-1"><small>Title</small></label>
+                    <input type="text" class="form-control" placeholder="Add Title" required id="title">
+                </div>
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="description" class="form-label fw-medium mb-1"><small>Description</small></label>
+                    <textarea name="" id="description" rows="3" placeholder="Add description" class="form-control"></textarea>
+                </div>
+                <div class="input-group-sm mb-3 shadow-sm">
+                    <label for="upload_pdf" class="form-label fw-medium mb-1"><small>Upload PDF File</small></label>
+                    <input type="file" class="form-control" required id="upload_pdf" accept="application/pdf">
+                </div>
+                <div class="d-flex justify-content-end align-items-center">
+                    <div class="btn btn-sm btn-danger me-2" id="cancel_btn">Cancel</div>
+                    <input type="submit" class="btn btn-sm btn-success" name="Create" value="Create">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content min-vh-100">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="/course">Course</a></li>
+                  <li class="breadcrumb-item"><a href="/course_detail">Course Details</a></li>
+                  <li class="breadcrumb-item"><a href="/text_book">Text Book</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Unit Title</li>
+                </ol>
+            </nav>
+            <div class="mt-3">
+                <div class="unit-card card mx-auto">
+                    <div class="text-end"><div class="btn" id="edit_btn"><i class="bi bi-pencil-square"></i></div></div>
+                    <div class="card-body pt-0">
+                        <h5 class="text-center text-primary">Bunkei</h5>
+                        <div class="">
+                            <small class="">ကျမက Anna ဖြစ်ပါတယ်။  Anna ကထိုင်းကလာတဲ့ကျောင်းသူဖစ်ပါတယ်။ ဒီနေ့သူမက သူမရဲ့ကျူတာဆရာနဲ့ ပထမဆုံးတွေ့ဆုံခြင်းဖစ်ပါတယ်</small>
+                        </div>
+                        <div class="text-center">
+                            <a href="#" class="">
+                                <small class="btn btn-sm bg-primary text-white mt-3 w-100">View PDF file</small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+
+        <%- include('partials/footer'); %>
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/all.js"></script>
+    <script>
+
+        let editBtn = document.querySelector('#edit_btn'),
+            createUnit = document.querySelector('#create_unit'),
+            cancelBtn = document.querySelector('#cancel_btn');
+
+        editBtn.addEventListener('click', () => {
+            createUnit.classList.remove('d-none');
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            createUnit.classList.add('d-none');
+        })
+
+    </script>
+</body>
+</html>

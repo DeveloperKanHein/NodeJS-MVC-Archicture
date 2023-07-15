@@ -1,0 +1,125 @@
+<%- include('partials/header'); %>
+
+</head>
+<body>
+    
+    <!--------------------------------- add role --------------------------------------------------->
+    <div class="create min-vh-100 w-100 position-fixed top-0 d-flex justify-content-center align-items-center fadeIn d-none" id="create_role">
+        <div class="new-content rounded py-4 px-3 shadow-sm">
+            <h5 class="text-center mb-3">Add Course</h5>
+            <form action="">
+                <div class="input-group-sm mb-2 shadow-sm">
+                    <label for="name" class="form-label mb-1 fw-medium"><small>Name</small></label>
+                    <input type="text" class="form-control" id="name" required>
+                </div>
+                <div class="input-group-sm mb-2 shadow-sm">
+                    <label for="email" class="form-label mb-1 fw-medium"><small>Email</small></label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="input-group-sm mb-2 shadow-sm">
+                    <label for="roles" class="form-label mb-1 fw-medium"><small>Roles</small></label>
+                    <select name="" id="roles" class="form-select">
+                        <option value="All">ALL</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Moderator">Moderator</option>
+                    </select>
+                </div>
+                <div class="input-group-sm mb-2 shadow-sm">
+                    <label for="password" class="form-label mb-1 fw-medium"><small>Password</small></label>
+                    <input type="password" class="form-control" id="password" required>
+                </div>
+                <div class="d-flex justify-content-end align-items-center">
+                    <div class="btn btn-sm btn-danger me-2" id="cancel_btn">Cancel</div>
+                    <input type="submit" class="btn btn-sm btn-success" name="Add" value="Create">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content assign-content min-vh-100">
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <h5 class="">Assign Roles</h5>
+                <div class="btn btn-sm btn-warning" id="add_role"><small><i class="bi bi-plus me-2"></i>Assign Role</small></div>
+            </div>
+            <div class="table-container mt-3 py-3 px-2 bg-white shadow-sm">
+                <table id="example" class="display bg-white" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Roles</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Admin 1</td>
+                            <td>admin1@gmail.com</td>
+                            <td>
+                                <div class="btn btn-sm btn-info text-white py-0 mt-1" style="border-radius: 20px;"><small>Admin</small></div>
+                                <div class="btn btn-sm btn-info text-white py-0 mt-1" style="border-radius: 20px;"><small>Moderator</small></div>
+                            </td>
+                            <td>
+                                <a href="#" class="text-danger"><i class="bi bi-trash"></i></a>
+                                <a href="#" class="text-success ms-2"><i class="bi bi-pencil-square"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Admin 2</td>
+                            <td>admin2@gmail.com</td>
+                            <td>
+                                <div class="btn btn-sm btn-info text-white py-0 mt-1" style="border-radius: 20px;"><small>Moderator</small></div>
+                            </td>
+                            <td>
+                                <a href="#" class="text-danger"><i class="bi bi-trash"></i></a>
+                                <a href="#" class="text-success ms-2"><i class="bi bi-pencil-square"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Admin 3</td>
+                            <td>admin3@gmail.com</td>
+                            <td>
+                                <div class="btn btn-sm btn-info text-white py-0 mt-1" style="border-radius: 20px;"><small>Moderator</small></div>
+                            </td>
+                            <td>
+                                <a href="#" class="text-danger"><i class="bi bi-trash"></i></a>
+                                <a href="#" class="text-success ms-2"><i class="bi bi-pencil-square"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <%- include('partials/footer'); %>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/all.js"></script>
+    <script>
+         $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+        let addRole = document.querySelector('#add_role'),
+            createRole = document.querySelector('#create_role'),
+            cancelBtn = document.querySelector('#cancel_btn');
+
+        addRole.addEventListener('click', () => {
+            createRole.classList.remove('d-none');
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            createRole.classList.add('d-none');
+        })
+    </script>
+</body>
+</html>

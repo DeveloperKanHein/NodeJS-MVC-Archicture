@@ -1,0 +1,100 @@
+<%- include('partials/header'); %>
+
+</head>
+<body>
+
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+        <%
+            function dateToString(date)
+            {
+                
+                var year = date.getFullYear();
+                var mes = date.getMonth()+1;
+                var dia = date.getDate();
+                var fecha =dia+"-"+mes+"-"+year;
+                return fecha;
+            }
+        %>
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content order-content min-vh-100">
+            <%- include('partials/check_message'); %>
+            
+            <div class="d-flex flex-wrap justify-content-between align-items-end mt-2">
+                <h5 class="">Orders</h5>
+                <!-- <div class="mt-2">
+                    <input type="search" class="bg-white border-0 px-2 py-1 rounded" placeholder="Filter By Course">
+                </div> -->
+                <div class="mt-2">
+                    <input type="file" class="d-none" id="filepicker">
+                    <a href="/admin/download-order" class="bg-white rounded shadow-sm d-flex justify-content-between align-items-center">
+                        <div class="px-4"><small class="" id="output">CSV</small></div>
+                        <div class="btn btn-sm btn-warning" id="export">Export</div>
+                    </a>
+                </div>
+            </div>
+            <div class="table-container mt-3 py-3 px-2 bg-white shadow-sm">
+                <table id="example" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Course</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% orders.forEach((order) => { %>
+                            <tr>
+                                <td><%= order.user %></td>
+                                <td><%= order.phone %></td>
+                                <td><%= order.course %></td>
+                                <td><%= dateToString(order.createdAt) %></td>
+                                <td><%= order.status %></td>
+                                <td>
+                                    <a href="/admin/order-done/<%= order._id %>" class="text-success me-4">Done</a>
+                                    <a href="/admin/order-cancel/<%= order._id %>" class="text-danger">Cancel</a>
+                                </td>
+                            </tr>
+                        <%}) %>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <%- include('partials/footer'); %>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/all.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+        const output = document.getElementById("output");
+        const filepicker = document.getElementById("filepicker");
+        const exportBtn = document.getElementById("export");
+
+        exportBtn.addEventListener("click", () => filepicker.click())
+        filepicker.addEventListener("change", (event) => {
+            const files = event.target.files;
+            output.textContent = "";
+
+            for (const file of files) {
+                output.innerHTML = file.name;
+            }
+        });
+
+    </script>
+</body>
+</html>

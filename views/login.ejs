@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login screen</title>
+    <!---------------------------- Bootstrap 5 and Icon cdn link ----------------------------------------->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.css">
+    <style>
+        :root{
+        --primary-color : #1931CD;
+        --secondary-color : #C0C7D6;
+        }
+        .text-primary{
+            color: var(--primary-color);
+        }
+        .main{
+            background-color: var(--secondary-color);
+        }
+        .img-container{
+            width: 415px;
+            height: 400px;
+        }
+        .login-form{
+            width: 400px;
+            height: 400px;
+            background-color: var(--primary-color);
+        }
+        .login-form input[type = submit]{
+            background-color: white;
+            color: black;
+        }
+        @media (max-width:450px) {
+            .login-form{
+                width: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main">
+        <div class="min-vh-100 d-flex justify-content-center align-items-center">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="img-container bg-white shadow-lg d-none d-lg-block">
+                    <img src="/photo/Privacy policy-rafiki.svg" alt="" class="img-fluid">
+                </div>
+                <div class="login-form">
+                    <div class="py-3 px-2 shadow-lg text-white">
+                        <h4 class="fw-bold text-center">Language360</h4>
+                        <h6 class="text-center">ADMIN PANEL</h6>
+                        <div class="fw-bold text-center">Control panel login</div>
+                        <form action="/private/admin/login" method="post">
+                            <div class="my-3 input-group-sm shadow-sm">
+                                <label for="email" class="form-label fw-medium mb-1"><small>Email</small></label>
+                                <input type="email" name="email" class="form-control" placeholder="Add Your Email" required id="email">
+                            </div>
+                            <div class="mb-3 input-group-sm shadow-sm">
+                                <label for="password" class="form-label fw-medium mb-1"><small>Password</small></label>
+                                <input type="password" name="password" class="form-control" placeholder="Password" required id="password">
+                            </div>
+                            <div class="mb-3 input-group-sm text-end">
+                                <input type="submit" class="btn btn-sm" value="Login">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

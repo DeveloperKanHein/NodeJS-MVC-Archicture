@@ -1,0 +1,48 @@
+<%- include('partials/header'); %>
+
+</head>
+<body>
+    <%- include('partials/loading'); %>
+    <!---------------------------- add question -----------------------------------------> 
+
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content min-vh-100">
+            <%- include('partials/check_message'); %>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/home">Home</a></li>
+                <li class="breadcrumb-item"><a href="/admin/faqs">FAQS</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Detail</li>
+                </ol>
+            </nav>
+            <div class="unit-card card mx-auto p-4">
+                <h5 class="text-center mb-3">Edit FAQ</h5>
+                <form action="/admin/update-faq" method="POST"  onsubmit="showLoading();">
+                    <div class="mb-3 input-group-sm shadow-sm">
+                        <label for="unit_title" class="form-label fw-medium mb-1"><small>Title</small></label>
+                        <input type="text" name="title" value="<%= faq.title %>" class="form-control" placeholder="Add Title" id="unit_title" required>
+                    </div>
+                    <div class="mb-3 input-group-sm shadow-sm">
+                        <label for="description" class="form-label fw-medium mb-1"><small>Description</small></label>
+                        <textarea name="description" id="description" rows="3" placeholder="Add description" class="form-control" required><%= faq.description %></textarea>
+                    </div>
+                    <input type="hidden" name="id" value="<%= faq._id %>">
+                    <div class="d-flex justify-content-end align-items-center">
+                        <input type="submit" class="btn btn-sm btn-success" value="Update">
+                    </div>
+                </form>
+            </div>
+       </article>
+
+        <%- include('partials/footer'); %>
+
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/all.js"></script>
+</body>
+</html>

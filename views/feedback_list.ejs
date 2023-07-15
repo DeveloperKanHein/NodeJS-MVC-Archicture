@@ -1,0 +1,42 @@
+<%- include('partials/header'); %>
+<link rel="stylesheet" href="css/help_support.css">
+
+</head>
+<body>
+
+    <section class="main">
+
+        <%- include('partials/menu_bar'); %>
+
+        <!---------------------------- content  ----------------------------------------->
+        <article class="content help-content min-vh-100">
+            <h5 class="">Feedbacks</h5>
+            <div class="inbox-containter  mt-2 rounded">
+                <% feedbacks.forEach((feedback) => { %>
+                    <div class="card p-4 mb-4">
+                        <h6><%= feedback.title %></h6>
+                        <p><%= feedback.description %></p>
+                        <p>
+                            <small class="date"><%= feedback.createdAt %></small>
+                        </p>
+                    </div>
+                <% }) %>
+            </div>
+
+            
+        </article>
+
+        <!---------------------------- send message  ----------------------------------------->
+        <div class="send-message d-flex justify-content-center align-items-center bg-primary text-white" id="send_message">
+            <i class="bi bi-plus-lg"></i>
+        </div>
+
+        <%- include('partials/footer'); %>
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/all.js"></script>
+
+</body>
+</html>
